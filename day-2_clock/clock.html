@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <style media="screen">
+      html {
+        background: url(silas-baisch-1660999-unsplash.jpg);
+        background-size: cover;
+        font-size: 10px;
+      }
+
+      body {
+        margin: 0;
+        font-size: 2rem;
+      }
+
+      .container{
+        /* position: relative; */
+        width: 30rem;
+        height: 30rem;
+        margin: 50% auto;
+        border: white 1.5rem solid;
+        box-shadow:
+          1rem 1rem 1rem,
+          inset 1rem 1rem 1rem;
+        border-radius: 50%;
+        padding: 2rem;
+      }
+
+      .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hand {
+        position: absolute;
+        top: 50%;
+        border: 3px #e6e6fa solid;
+        width: 50%;
+        transform: translateY(-50%) rotate(90deg);
+        transform-origin: 100%;
+        box-shadow: 0.5rem 0.2rem 1rem;
+      }
+
+    </style>
+
+    <div class="container">
+      <div class="clock-face">
+        <div class="hand hours"></div>
+        <div class="hand minutes"></div>
+        <div class="hand seconds"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      function updateTime() {
+        const today = new Date();
+
+        const hours = today.getHours();
+        const hourHand = document.querySelector('.hours');
+        hourHand.style.transform = `rotate(${hours/24*360 + 90}deg)`
+
+        const mins = today.getMinutes();
+        const minHand = document.querySelector('.minutes');
+        minHand.style.transform = `rotate(${mins/60*360 + 90}deg)`
+
+        const secs = today.getSeconds();
+        const secondHand = document.querySelector('.seconds');
+        secondHand.style.transform = `rotate(${secs/60*360 + 90}deg)`
+      }
+
+      setInterval(updateTime, 1000);
+
+    </script>
+  </body>
+</html>
