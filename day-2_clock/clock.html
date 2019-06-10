@@ -63,15 +63,15 @@
 
         const hours = today.getHours();
         const hourHand = document.querySelector('.hours');
-        hourHand.style.transform = `rotate(${hours/24*360 + 90}deg)`
+        hourHand.style.transform = `rotate(${hours/24*360 + 90}deg)`;
 
         const mins = today.getMinutes();
         const minHand = document.querySelector('.minutes');
-        minHand.style.transform = `rotate(${mins/60*360 + 90}deg)`
+        minHand.style.transform = `rotate(${mins/60*360 + 90}deg)`;
 
         const secs = today.getSeconds();
         const secondHand = document.querySelector('.seconds');
-        secondHand.style.transform = `rotate(${secs/60*360 + 90}deg)`
+        secondHand.style.transform = `rotate(${secs/60*360 + 90}deg)`;
       }
 
       setInterval(updateTime, 1000);

@@ -91,19 +91,19 @@
     <script type="text/javascript">
 
     window.addEventListener('keydown', (event) => {
-      // const keySound = document.querySelector(`audio[data-key=${event.key}]`);
-      // if(!keySound) return;
-      // keySound.play();
-      // keySound.currentTime = 0;
-      // document.querySelector(`.key[data-key=${event.key}]`).classList.add('playing');
-      console.log(event);
-      // const onKey = document.querySelector(`.key[data-key=${event.key}]`);
-      // onKey.classList.add('playing');
-      // onKey.addEventListener('transitionend', (evt)=> {
-        // if(evt.propertyName === 'transform'){
-          // evt.target.classList.remove('playing');
-        // }
-      // })
+      const keySound = document.querySelector(`audio[data-key=${event.key}]`);
+      if(!keySound) return;
+      keySound.play();
+      keySound.currentTime = 0;
+      document.querySelector(`.key[data-key=${event.key}]`).classList.add('playing');
+      
+      const onKey = document.querySelector(`.key[data-key=${event.key}]`);
+      onKey.classList.add('playing');
+      onKey.addEventListener('transitionend', (evt)=> {
+        if(evt.propertyName === 'transform'){
+          evt.target.classList.remove('playing');
+        }
+      })
     })
 
     </script>
