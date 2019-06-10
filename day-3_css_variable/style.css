@@ -1,0 +1,32 @@
+      :root {
+        --spacing: 50px;
+        --blur: 10px;
+        --color: #ffa500;
+      }
+
+      body {
+        text-align: center;
+        font-size: 50px;
+        font-weight: 100;
+        color: white;
+        background-color: #2f4f4f;
+      }
+
+      h1 {
+        margin: 40px;
+      }
+
+      input {
+        width: 100px;
+        margin-bottom: 30px;
+      }
+
+      img {
+        background-color: var(--color);
+        padding: var(--spacing);
+        filter: blur(var(--blur));
+      }
+
+      .controls {
+        margin-bottom: 50px;
+      }
