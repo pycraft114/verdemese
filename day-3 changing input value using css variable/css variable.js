@@ -1,6 +1,6 @@
 const inputs = document.querySelectorAll('input');
 
-function whenBarMoving(event) {
+function changingInputValue(event) {
   if(this === event.target && this.dataset.px){
     document.documentElement.style.setProperty(`--${this.name}`, this.value + 'px')
   } else {
