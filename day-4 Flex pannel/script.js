@@ -1,6 +1,6 @@
 const panels = Array.from(document.querySelectorAll('.panel'));
 
-function toggleActiveClass (event) {
+function toggleActiveClass () {
   this.classList.toggle('active');
 }
 
@@ -11,6 +11,8 @@ function toggleTransitionedclass (event) {
 }
 
 panels.forEach(panel => panel.addEventListener('click', toggleActiveClass));
-panels.forEach(panel => panel.addEventListener('transitionend', toggleTransitionedclass))
+panels.forEach(panel => panel.addEventListener('transitionend', toggleTransitionedclass));
 
-//클래스를 추가(add), 제거(remove)를 제외하고 toggle을 통해서 class를 간편하게 추가하거나 제거할 수 있는 방법을 찾음.
+//클래스를 추가(add), 제거(remove) method를 제외하고 toggle을 통해서 class를 간편하게 추가하거나 제거할 수 있는 방법을 찾음.
+
+//transitionend event 를 이용하여 선행되는
