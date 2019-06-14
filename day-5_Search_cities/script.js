@@ -17,9 +17,8 @@ function getCitiesWhenInput() {
     `<li>
       <span>${place.city}, ${place.state}</span>
       <span>${place.population}</span>
-    </li>`).join('');
+    </li>`).join('') || '<li>Nothing found</li>';
     //join method를 사용하여, 하나의 string으로 만듦.
 }
-
 
 document.querySelector('.search').addEventListener('input', getCitiesWhenInput);
