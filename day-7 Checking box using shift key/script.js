@@ -20,8 +20,8 @@ function getCheckBoxesChecked (event) {
 }
 
 // 10번 라인의 checkBox === this 와 checkBox === withOutShift 의 차이점을 이해할 수 없습니다.
-// 그리고 withOutShift를 함수의 앞 부분(7번 라인보다 먼저) 두면 제대로 동작하지 않습니다.
- 
+// 그리고 withOutShift를 함수의 앞 부분(7번 라인보다 먼저)에 두고 event를 실행하면, withOutShift가 인식되지 않습니다.
+
 
 
 checkBoxes.forEach(checkBox => checkBox.addEventListener('click', getCheckBoxesChecked))
