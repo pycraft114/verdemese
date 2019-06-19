@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const keys = [];
+      const keyCode = 'mariethedj';
+
+      window.addEventListener('keydown', (event) => {
+        keys.push(event.key.toLowerCase());
+        keys.splice(-keys.length, keys.length-keyCode.length);
+        console.log(keys);
+        if(keys.join('').includes(keyCode)){
+          console.log('ding ding');
+        }
+      })
+    </script>
+  </body>
+</html>
