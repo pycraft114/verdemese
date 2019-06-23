@@ -35,7 +35,7 @@ ex) let pri1 = 100;
     pri1 = 200;
     console.log(pri1, pri2) // return 200 100
 
-* object와(를) 연관된? 지칭하는? 변수는 실제로 object를 포함하고 있지않다. 복사하여 가두는 것이 아닌, 실제의 데이터를 참고한다.     
+* object와(를) 연관된? 지칭하는? 변수는 실제로 object를 포함하고 있지않다. 복사하여 가두는 것이 아닌, 실제의 데이터를 참고(reference)한다.     
 
 ex) let obj1 = [1, 2, 3];
     let obj2 = obj1;
