@@ -26,6 +26,7 @@ People.prototype.examProperty = "test";
 verde.hasOwnProperty(examProperty); // return false
 
 => verde가 소유하고 있는 자신의 property가 아닌 상속받은 property 이기 때문에 false.
+
 ###copy vs reference
 * primitive data를 포함하는 변수는, 카피한 data를 변수 자신 안에 가두기 때문에 카피의 피객체의 값이 바뀌어도 변하지 않는다.
 
