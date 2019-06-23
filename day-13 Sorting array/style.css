@@ -1,0 +1,39 @@
+html {
+  min-height: 100vh;
+  background-image: url(https://images.unsplash.com/3/doctype-hi-res.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1346&q=80);
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 50px 0;
+  padding: 0;
+  width: 500px;
+  box-shadow: 0 0 0 20px rgba(0,0,0,0.1);
+  background-color: white;
+}
+
+.container li {
+  list-style: inside square;
+  list-style-type: square;
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  font-size: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.container li:last-child {
+  border-bottom: none;
+}
