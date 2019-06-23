@@ -25,19 +25,19 @@ People.prototype.examProperty = "test";
 
 verde.hasOwnProperty(examProperty); // return false
 
-=> verde가 소유하고 있는 자신의 property가 아닌 상속받은 property 이기 때문에 false.
+=> verde가 소유하고 있는 자신의 property가 아닌 상속받은 property 이기 때문에 false.  
 
-###copy vs reference
+###copy vs reference  
 * primitive data를 포함하는 변수는, 카피한 data를 변수 자신 안에 가두기 때문에 카피의 피객체의 값이 바뀌어도 변하지 않는다.
 
-ex) let pri1 = 100;
-    let pri2 = pri1;
-    pri1 = 200;
+ex) let pri1 = 100;  
+    let pri2 = pri1;  
+    pri1 = 200;  
     console.log(pri1, pri2) // return 200 100
 
 * object와(를) 연관된? 지칭하는? 변수는 실제로 object를 포함하고 있지않다. 복사하여 가두는 것이 아닌, 실제의 데이터를 참고(reference)한다.     
 
-ex) let obj1 = [1, 2, 3];
-    let obj2 = obj1;
-    obj1 = [2, 3, 4];
+ex) let obj1 = [1, 2, 3];  
+    let obj2 = obj1;  
+    obj1 = [2, 3, 4];  
     console.log(obj1, obj2); // return [2, 3, 4] [2, 3, 4]
