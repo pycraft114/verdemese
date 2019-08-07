@@ -1,5 +1,9 @@
 html {
-  font-size: 30px;
+  font-size: 10px;
+}
+
+.wrapper input[type="button"] {
+  padding : 10px;
 }
 
 body {

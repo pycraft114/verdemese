@@ -1,37 +1,52 @@
 import React, { Component } from 'react';
 import './App.css';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
+import Person from './Person/Person';
 
 class App extends Component {
   
   state = {
-    legends: [ 'Bangalore', 'Bloodhound', 'Caustic', 'Mirage', 'Wraith', 'Octane', 'Watson', 'Lifeline', 'Gibraltor', 'PathFinder' ],
-    userName: '',
-    legendPicked: ''
+    persons: [
+      { name: "Verde", age: 24 },
+      { name: "Kermit", age: 25 },
+      { name: "Mese", age: 23 }
+    ],
+    otherState: "some other state",
+    showPersons: false
   }
 
-
-  nameChangeHandler = (event) => {
-    const userInput = event.target.value;
-    this.setState({
-      userName: userInput
-    });
+  toggleNamecard = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons : !doesShow });
   }
 
-  clickHandler = () => {
-    const legends = this.state.legends;
-    const randomNumber = Math.floor(Math.random() * legends.length);
+  removeNamecardHandler = (index) => {
+    const personCopied = [...this.state.persons];
     this.setState({
-      legendPicked: legends[randomNumber] 
-    });
+      persons: personCopied[index]
+    }); 
   }
 
   render() {
-    return (
+
+    let persons = null;
+
+    if ( this.state.showPersons ) {
+      persons = (
       <div>
-        <UserInput click={this.clickHandler} changeName={this.nameChangeHandler}></UserInput>
-        <UserOutput name={this.state.userName} legend={this.state.legendPicked}></UserOutput>
+        {this.state.persons.map((person, index) => {
+          return <Person 
+          click={() =>  this.removeNamecardHandler(index)} 
+          name={person.name}
+          age={person.age}></Person>
+        })}
+      </div>
+      );
+    }
+
+    return (
+      <div className="wrapper">
+        <input type="button" onClick={this.toggleNamecard} value="toggle person"/>
+        {persons}
       </div>
     );
   }
