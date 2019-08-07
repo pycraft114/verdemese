@@ -6,23 +6,45 @@ class App extends Component {
   
   state = {
     persons: [
-      { name: "Verde", age: 24 },
-      { name: "Kermit", age: 25 },
-      { name: "Mese", age: 23 }
+      {id:'sdadd1', name: "Verde", age: 24 },
+      {id:'asdda2', name: "Kermit", age: 25 },
+      {id:'qwssd3', name: "Mese", age: 23 }
     ],
+    
     otherState: "some other state",
     showPersons: false
   }
 
+  changeNamecardHandler = ( event, index ) => {
+    const inputValue = event.target.value;
+    const personsCopied = [...this.state.persons];
+    const indexFromInput = index;
+
+    personsCopied.map((person, index) => {
+      if ( index === indexFromInput ) {
+        person.name = inputValue;
+        this.setState({ persons : personsCopied});
+      }
+    })
+  
+  }
+
   toggleNamecard = () => {
+
     const doesShow = this.state.showPersons;
+    if ( doesShow ) {
+      
+    }
+
     this.setState({ showPersons : !doesShow });
+
   }
 
   removeNamecardHandler = (index) => {
     const personCopied = [...this.state.persons];
+    personCopied.splice(index, 1);
     this.setState({
-      persons: personCopied[index]
+      persons: personCopied
     }); 
   }
 
@@ -37,7 +59,10 @@ class App extends Component {
           return <Person 
           click={() =>  this.removeNamecardHandler(index)} 
           name={person.name}
-          age={person.age}></Person>
+          age={person.age}
+          key={person.id}
+          change={(event) => this.changeNamecardHandler(event, index)}
+          ></Person>
         })}
       </div>
       );
