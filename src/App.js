@@ -1,77 +1,58 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Validation from './Validation/Validation';
+import Char from './Char/Char';
+
 
 class App extends Component {
-  
-  state = {
-    persons: [
-      {id:'sdadd1', name: "Verde", age: 24 },
-      {id:'asdda2', name: "Kermit", age: 25 },
-      {id:'qwssd3', name: "Mese", age: 23 }
-    ],
-    
-    otherState: "some other state",
-    showPersons: false
-  }
+ 
+  state = { userInput: '' }
 
-  changeNamecardHandler = ( event, index ) => {
-    const inputValue = event.target.value;
-    const personsCopied = [...this.state.persons];
-    const indexFromInput = index;
+textChangeHandler = ( event ) => {
+  const inputValue = event.target.value;
+  this.setState({
+    userInput: inputValue 
+  });
+}
 
-    personsCopied.map((person, index) => {
-      if ( index === indexFromInput ) {
-        person.name = inputValue;
-        this.setState({ persons : personsCopied});
-      }
-    })
-  
-  }
+removeCharacterHandler = ( index ) => {
+  const userInputArrayed = [...this.state.userInput];
+  userInputArrayed.splice( index, 1 );
 
-  toggleNamecard = () => {
+  this.setState({
+    userInput: userInputArrayed.join('')
+  });
 
-    const doesShow = this.state.showPersons;
-    if ( doesShow ) {
-      
-    }
-
-    this.setState({ showPersons : !doesShow });
-
-  }
-
-  removeNamecardHandler = (index) => {
-    const personCopied = [...this.state.persons];
-    personCopied.splice(index, 1);
-    this.setState({
-      persons: personCopied
-    }); 
-  }
+  console.log(userInputArrayed);
+}
 
   render() {
 
-    let persons = null;
-
-    if ( this.state.showPersons ) {
-      persons = (
-      <div>
-        {this.state.persons.map((person, index) => {
-          return <Person 
-          click={() =>  this.removeNamecardHandler(index)} 
-          name={person.name}
-          age={person.age}
-          key={person.id}
-          change={(event) => this.changeNamecardHandler(event, index)}
-          ></Person>
-        })}
-      </div>
+    const charList = [...this.state.userInput].map((element, index) => {
+      return (
+        <Char 
+        character={element}
+        click={() => this.removeCharacterHandler(index)}></Char>
       );
-    }
+    })
+    
+    console.log(charList);
 
     return (
-      <div className="wrapper">
-        <input type="button" onClick={this.toggleNamecard} value="toggle person"/>
-        {persons}
+      <div className="App">
+        <ol>
+          <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>
+          <li>Create a new component (=> ValidationComponent) which receives the text length as a prop</li>
+          <li>Inside the ValidationComponent, either output "Text too short" or "Text long enough" depending on the text length (e.g. take 5 as a minimum length)</li>
+          <li>Create another component (=> CharComponent) and style it as an inline box (=> display: inline-block, padding: 16px, text-align: center, margin: 16px, border: 1px solid black).</li>
+          <li>Render a list of CharComponents where each CharComponent receives a different letter of the entered text (in the initial input field) as a prop.</li>
+          <li>When you click a CharComponent, it should be removed from the entered text.</li>
+        </ol>
+        <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
+
+        <input type="text" onChange={this.textChangeHandler}/>
+        <Validation length={this.state.userInput.length}></Validation>
+        {charList}
       </div>
     );
   }
