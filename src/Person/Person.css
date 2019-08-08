@@ -1,0 +1,16 @@
+* {
+    font-size: 20px
+}
+
+.person {
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.4) ;
+    width: 400px;
+    text-align: center;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.person input {
+    padding: 5px;
+}

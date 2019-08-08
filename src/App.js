@@ -1,58 +1,95 @@
 import React, { Component } from 'react';
 import './App.css';
-import Validation from './Validation/Validation';
-import Char from './Char/Char';
-
+import Person from './Person/Person';
 
 class App extends Component {
- 
-  state = { userInput: '' }
+  
+  state = {
+    persons: [
+      {id:'sdadd1', name: 'Verde', age: 24 },
+      {id:'asdda2', name: 'Kermit', age: 25 },
+      {id:'dsaas3', name: 'mese', age: 24}
+    ],
+    
+    otherState: "some other state",
+    showPersons: true
+  }
 
-textChangeHandler = ( event ) => {
-  const inputValue = event.target.value;
-  this.setState({
-    userInput: inputValue 
-  });
-}
+  changeNamecardHandler = ( event, id ) => {
+    const inputValue = event.target.value;
+    const personsCopied = [...this.state.persons];
 
-removeCharacterHandler = ( index ) => {
-  const userInputArrayed = [...this.state.userInput];
-  userInputArrayed.splice( index, 1 );
+    personsCopied.map( person => {
+      if ( person.id === id ) {
+        person.name = inputValue;
+        this.setState({ persons : personsCopied});
+      }
+    })
+  }
 
-  this.setState({
-    userInput: userInputArrayed.join('')
-  });
+  toggleNamecard = async () => {
+    const doesShow = this.state.showPersons;
+    
+    //setState가 비동기임을 확인하기 위해서
+    await this.setState({ showPersons : !doesShow });
+    
+    console.log(this.state.showPersons);
+  }
 
-  console.log(userInputArrayed);
-}
+  removeNamecardHandler = (index) => {
+    const personCopied = [...this.state.persons];
+    personCopied.splice(index, 1);
+    this.setState({
+      persons: personCopied
+    }); 
+  }
 
   render() {
 
-    const charList = [...this.state.userInput].map((element, index) => {
-      return (
-        <Char 
-        character={element}
-        click={() => this.removeCharacterHandler(index)}></Char>
+    const buttonStyle = {
+      padding : '10px',
+      color: 'white',
+      backgroundColor: 'blue',
+      boxShadow: 'none',
+      outline: 'none',
+    };
+
+    let persons = null;
+
+    if ( this.state.showPersons ) {
+      persons = (
+      <div>
+        {this.state.persons.map((person, index) => {
+          return <Person 
+          click={() =>  this.removeNamecardHandler(index)} 
+          name={person.name}
+          age={person.age}
+          key={person.id}
+          change={(event) => this.changeNamecardHandler(event, person.id)}
+          ></Person>
+        })}
+      </div>
       );
-    })
+
+      buttonStyle.backgroundColor = 'green';
+    }
+
+    let classes = [] 
+    if ( this.state.persons.length <= 2 ) {
+      classes.push('red');
+    }
     
-    console.log(charList);
+    if ( this.state.persons.length <= 1 ) {
+      classes.push('bold');
+    }
+
 
     return (
-      <div className="App">
-        <ol>
-          <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>
-          <li>Create a new component (=> ValidationComponent) which receives the text length as a prop</li>
-          <li>Inside the ValidationComponent, either output "Text too short" or "Text long enough" depending on the text length (e.g. take 5 as a minimum length)</li>
-          <li>Create another component (=> CharComponent) and style it as an inline box (=> display: inline-block, padding: 16px, text-align: center, margin: 16px, border: 1px solid black).</li>
-          <li>Render a list of CharComponents where each CharComponent receives a different letter of the entered text (in the initial input field) as a prop.</li>
-          <li>When you click a CharComponent, it should be removed from the entered text.</li>
-        </ol>
-        <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
-
-        <input type="text" onChange={this.textChangeHandler}/>
-        <Validation length={this.state.userInput.length}></Validation>
-        {charList}
+      <div className="wrapper">
+        <h1>React application for practice</h1>
+        <p className={classes.join(' ')}>this is really working!</p>
+        <input style={buttonStyle} type="button" onClick= {this.toggleNamecard} value="toggle person"/>
+        {persons}
       </div>
     );
   }
