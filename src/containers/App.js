@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Radium, { StyleRoot } from 'radium';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   
@@ -10,7 +12,6 @@ class App extends Component {
       {id:'asdda2', name: 'Kermit', age: 25 },
       {id:'dsaas3', name: 'mese', age: 24}
     ],
-    
     otherState: "some other state",
     showPersons: true
   }
@@ -52,6 +53,9 @@ class App extends Component {
       backgroundColor: 'blue',
       boxShadow: 'none',
       outline: 'none',
+      ':hover': {
+        backgroundColor: 'lightblue'
+      }
     };
 
     let persons = null;
@@ -59,19 +63,15 @@ class App extends Component {
     if ( this.state.showPersons ) {
       persons = (
       <div>
-        {this.state.persons.map((person, index) => {
-          return <Person 
-          click={() =>  this.removeNamecardHandler(index)} 
-          name={person.name}
-          age={person.age}
-          key={person.id}
-          change={(event) => this.changeNamecardHandler(event, person.id)}
-          ></Person>
-        })}
+        <Persons 
+        persons={this.state} 
+        clicked={this.removeNamecardHandler}
+        changed={this.nameChangedHandler}></Persons>
       </div>
       );
 
       buttonStyle.backgroundColor = 'green';
+      buttonStyle[':hover'].backgroundColor = 'lightgreen';
     }
 
     let classes = [] 
@@ -85,14 +85,16 @@ class App extends Component {
 
 
     return (
-      <div className="wrapper">
-        <h1>React application for practice</h1>
-        <p className={classes.join(' ')}>this is really working!</p>
-        <input style={buttonStyle} type="button" onClick= {this.toggleNamecard} value="toggle person"/>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="wrapper">
+          <h1>React application for practice</h1>
+          <p className={classes.join(' ')}>this is really working!</p>
+          <input style={buttonStyle} type="button" onClick=   {this.toggleNamecard} value="toggle person"/>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
