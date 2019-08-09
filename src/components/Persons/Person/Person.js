@@ -4,6 +4,12 @@ import Radium from 'radium'
 
 const person = (props) => {
     const style = {
+        border: '2px solid #ccc',
+        boxShadow: '2px 2px 5px rgb(0, 0, 0, 0.4)',
+        width: '400px',
+        textAlign: 'center',
+        margin: '30px auto',
+        padding: '20px',
         '@media (max-width: 700px)': {
             backgroundColor: 'lightblue'
         }

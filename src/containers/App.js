@@ -64,9 +64,9 @@ class App extends Component {
       persons = (
       <div>
         <Persons 
-        persons={this.state} 
+        persons={this.state.persons} 
         clicked={this.removeNamecardHandler}
-        changed={this.nameChangedHandler}></Persons>
+        changed={this.changeNamecardHandler}></Persons>
       </div>
       );
 
